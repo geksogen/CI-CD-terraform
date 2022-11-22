@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./infrastructure
+        #working-directory: ./infrastructure
 
     steps:
     - name: Checkout Repo
