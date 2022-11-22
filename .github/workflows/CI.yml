@@ -42,7 +42,7 @@ jobs:
       id: validate
       run: terraform validate -no-color >> $Env:GITHUB_OUTPUT
 
-    #- name: Terraform Plan
-    #  id: plan
-    #  run: terraform plan -out ${{ inputs.terraform-plan-artifact-name }}terraform plan -out ${{ inputs.terraform-plan-artifact-name }} -detailed-exitcode || true >> $Env:GITHUB_OUTPUT
-    #  continue-on-error: False
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -out ${{ inputs.terraform-plan-artifact-name }}terraform plan -out ${{ inputs.terraform-plan-artifact-name }} -detailed-exitcode || true >> $Env:GITHUB_OUTPUT
+      continue-on-error: False
