@@ -8,7 +8,7 @@ on:
 env:
   #YA_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   #YA_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #YA_REGION: ${{ secrets.AWS_REGION }}
+  TF_VAR_region: ${{ secrets.YA_TOKEN }}
   TF_VAR_github_password: ${{ secrets.CUSTOM_PAT }}
 
 jobs:
@@ -44,5 +44,5 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color -input=false -detailed-exitcode || true >> $Env:GITHUB_OUTPUT
+      run: terraform plan -no-color -input=false -detailed-exitcode || true -var 'token=${{ secrets.YA_TOKEN }}' >> $Env:GITHUB_OUTPUT
       continue-on-error: False
