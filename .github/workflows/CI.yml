@@ -1,0 +1,37 @@
+name: 'Terraform Plan'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.2.8
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check >> $Env:GITHUB_OUTPUT
+
+      - name: Terraform Init
+        id: init
+        run: terraform init >> $Env:GITHUB_OUTPUT
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color >> $Env:GITHUB_OUTPUT
+
+      - name: Terraform Plan
+        id: plan
+        #if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false >> $Env:GITHUB_OUTPUT
+        continue-on-error: true
