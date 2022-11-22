@@ -3,10 +3,6 @@ variable "new_user" {
   default = "meta.txt"
 }
 
-variable "token"{
-  type   = string
-}
-
 variable "cloud_id"{
   type   = string
 }
