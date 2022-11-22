@@ -5,6 +5,7 @@ variable "new_user" {
 
 variable "token"{
   type   = string
+  default = "${{ secrets.AWS_ACCESS_KEY_ID }}"
 }
 
 variable "cloud_id"{
