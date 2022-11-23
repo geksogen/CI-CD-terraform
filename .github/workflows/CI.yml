@@ -83,7 +83,7 @@ jobs:
       with:
         github-token: ${{ secrets.CUSTOM_PAT }}
         script: |
-          const output = `#### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+          const output = `### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 
           <details><summary>Show Plan Error</summary>
 
