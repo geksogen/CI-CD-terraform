@@ -8,11 +8,12 @@ terraform {
 }
 
 provider "yandex" {
- token     = "${TF_VAR_token}"
- #cloud_id  = var.cloud_id
- #folder_id = var.folder_id
- #zone      = "ru-central1-a"
+ token     = var.YC_TOKEN
+ cloud_id  = var.YC_CLOUD_ID
+ folder_id = var.YC_FOLDER_ID
+ zone      = "ru-central1-a"
 }
+
 
 resource "yandex_compute_instance" "vm" {
     count = 3

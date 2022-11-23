@@ -1,12 +1,17 @@
+#--------------------------------------------------------------------------------
+#Variable section
+#--------------------------------------------------------------------------------
+variable "YC_CLOUD_ID" {
+    type=string
+}
+variable "YC_FOLDER_ID" {
+    type=string
+}
+variable "YC_TOKEN" {
+    type=string
+}
+
 variable "new_user" {
   type    = string
   default = "meta.txt"
-}
-
-variable "cloud_id"{
-  type   = string
-}
-
-variable "folder_id"{
-  type   = string
 }
