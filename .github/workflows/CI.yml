@@ -54,18 +54,20 @@ jobs:
     - name: Render template
       id: template
       uses: chuhlomin/render-template@v1.4
+      env:
+        PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
       with:
         template: .github/pull-request-template.md
         vars: |
           terraform_init: ${{ steps.init.outcome }}
           terraform_validate: ${{ steps.validate.outcome }}
           terraform_plan: ${{ steps.plan.outcome }}
+          
+          terraform_plan_summary: ${process.env.PLAN}
 
     - name: Create Pull Request
       if: steps.plan.outcome == 'success'
       id: cpr
       uses: peter-evans/create-pull-request@v4
-      env:
-        PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
       with:
         body: ${{ steps.template.outputs.result }}
