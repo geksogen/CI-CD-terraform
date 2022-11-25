@@ -66,8 +66,5 @@ jobs:
       uses: peter-evans/create-pull-request@v4
       env:
         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-    - name: Check outputs
-      if: ${{ steps.cpr.outputs.pull-request-number }}
-      run: |
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      with:
+        body: ${{ steps.template.outputs.result }}
