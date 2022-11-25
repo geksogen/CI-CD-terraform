@@ -5,6 +5,7 @@ on:
     branches:
       - master
 
+
 env:
   TF_VAR_YC_FOLDER_ID: ${{ secrets.YA_FOLDER_ID }}
   TF_VAR_YC_CLOUD_ID: ${{ secrets.YA_CLOUD_ID }}
@@ -23,7 +24,7 @@ jobs:
 
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         token: ${{ secrets.CUSTOM_PAT }}
         ref: ${{ github.head_ref }}
@@ -50,8 +51,11 @@ jobs:
       run: terraform plan -no-color -input=false
       continue-on-error: False
 
-    - name: Add Plan Comment
-      uses: thollander/actions-comment-pull-request@v1
-      with:
-        message: |
-          Hello world ! :wave:
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v4
+    - name: Check outputs
+      if: ${{ steps.cpr.outputs.pull-request-number }}
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
