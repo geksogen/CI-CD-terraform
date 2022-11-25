@@ -57,7 +57,7 @@ jobs:
       with:
         template: .github/pull-request-template.md
         vars: |
-          terraform_init: init
+          terraform_init: ${{ steps.init.outcome }}
           terraform_validate: validate
 
     - name: Create Pull Request
