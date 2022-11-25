@@ -79,13 +79,13 @@ jobs:
     - name: Post Plan and Apply to GitHub PR
       if: steps.plan.outcome == 'success'
       uses: mshick/add-pr-comment@v1
-        with:
-          repo-token: ${{ secrets.CUSTOM_PAT }}
-          repo-token-user-login: 'github-actions[bot]'
-          message: |
-            Applying **Infra**:
-            <details><summary>Show Apply</summary>
-            ```
-            ${{ steps.apply.outputs.stdout }}
-            ```
-            </details>
+      with:
+        repo-token: ${{ secrets.CUSTOM_PAT }}
+        repo-token-user-login: 'github-actions[bot]'
+        message: |
+          Applying **Infra**:
+          <details><summary>Show Apply</summary>
+          ```
+          ${{ steps.apply.outputs.stdout }}
+          ```
+          </details>
