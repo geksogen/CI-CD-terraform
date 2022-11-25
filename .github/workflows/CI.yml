@@ -63,7 +63,7 @@ jobs:
           terraform_validate: ${{ steps.validate.outcome }}
           terraform_plan: ${{ steps.plan.outcome }}
           
-          terraform_plan_summary: ${{process.env.PLAN}}}
+          terraform_plan_summary: ${{ process.env.PLAN }}}
 
     - name: Create Pull Request
       if: steps.plan.outcome == 'success'
