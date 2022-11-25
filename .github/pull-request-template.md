@@ -8,7 +8,3 @@
           
           
 </details>
-
-* Pusher:   {{ .github_actor }}
-* Action:   {{ .github_action }}
-* Workflow: {{ .github_workflow }}

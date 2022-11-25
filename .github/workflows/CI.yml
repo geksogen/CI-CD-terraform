@@ -56,15 +56,12 @@ jobs:
       uses: chuhlomin/render-template@v1.4
       with:
         template: .github/pull-request-template.md
-        run: terraform plan -no-color -input=false -out=tfplan >> $PLAN
+        run: terraform plan -no-color -input=false -out=tfplan
         vars: |
           terraform_init: ${{ steps.init.outcome }}
           terraform_validate: ${{ steps.validate.outcome }}
           terraform_plan: ${{ steps.plan.outcome }}
-          
-          github_pusher: ${{ github.actor }}
-          github_action: ${{ github.event_name }}
-          github_workflow: ${{ github.workflow }}
+
 
     - name: Create Pull Request
       if: steps.plan.outcome == 'success'
