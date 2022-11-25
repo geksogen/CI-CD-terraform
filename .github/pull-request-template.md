@@ -1,4 +1,4 @@
 #### Terraform Format and Style 🖌
-          #### Terraform Initialization ⚙️
-          #### Terraform Validation 🤖 
+          #### Terraform Initialization ⚙️{{ .terraform init }}
+          #### Terraform Validation 🤖 {{ .terraform validate }}
           #### Terraform Plan 📖
