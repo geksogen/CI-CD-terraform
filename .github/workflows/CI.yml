@@ -51,9 +51,21 @@ jobs:
       run: terraform plan -no-color -input=false
       continue-on-error: False
 
+    - name: Render template
+      id: template
+      uses: chuhlomin/render-template@v1.4
+      with:
+        template: .github/pull-request-template.md
+        vars: |
+          foo: this
+          bar: that
+
     - name: Create Pull Request
+      if: steps.plan.outcome == 'success'
       id: cpr
       uses: peter-evans/create-pull-request@v4
+      env:
+        PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
     - name: Check outputs
       if: ${{ steps.cpr.outputs.pull-request-number }}
       run: |
