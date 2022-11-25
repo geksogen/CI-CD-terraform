@@ -50,5 +50,6 @@ jobs:
     - name: Add Plan Comment
       uses: thollander/actions-comment-pull-request@v1
       with:
+        token: ${{ secrets.CUSTOM_PAT }}
         message: |
           Hello world ! :wave:
