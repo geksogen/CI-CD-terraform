@@ -8,3 +8,7 @@
           \`\`\`{{.terraform_plan_summary}}\`\`\`
           
 </details>
+
+* Pusher:   {{ github.actor }}
+* Action:   {{ github.event_name }}
+* Workflow: {{ github.workflow }}

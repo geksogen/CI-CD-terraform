@@ -48,14 +48,12 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color -input=false -out=tfplan && terraform show -no-color tfplan
+      run: terraform plan -no-color -input=false
       continue-on-error: False
 
     - name: Render template
       id: template
       uses: chuhlomin/render-template@v1.4
-      env:
-        PLAN: ""
       with:
         template: .github/pull-request-template.md
         run: terraform plan -no-color -input=false -out=tfplan >> $PLAN
@@ -64,7 +62,7 @@ jobs:
           terraform_validate: ${{ steps.validate.outcome }}
           terraform_plan: ${{ steps.plan.outcome }}
           
-          terraform_plan_summary: ${{ process.env.PLAN }}
+          github_actor: ${{ github.actor }}
 
     - name: Create Pull Request
       if: steps.plan.outcome == 'success'
