@@ -9,6 +9,6 @@
           
 </details>
 
-* Pusher:   {{ github.actor }}
-* Action:   {{ github.event_name }}
-* Workflow: {{ github.workflow }}
+* Pusher:   {{ .github_actor }}
+* Action:   {{ .github_action }}
+* Workflow: {{ .github_workflow }}

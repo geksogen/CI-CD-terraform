@@ -62,7 +62,9 @@ jobs:
           terraform_validate: ${{ steps.validate.outcome }}
           terraform_plan: ${{ steps.plan.outcome }}
           
-          github_actor: ${{ github.actor }}
+          github_pusher: ${{ github.actor }}
+          github_action: ${{ github.event_name }}
+          github_workflow: ${{ github.workflow }}
 
     - name: Create Pull Request
       if: steps.plan.outcome == 'success'
