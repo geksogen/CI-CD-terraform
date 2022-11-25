@@ -55,9 +55,10 @@ jobs:
       id: template
       uses: chuhlomin/render-template@v1.4
       env:
-        PLAN: "terraform\n${{ steps.plan.outcome.stdout }}"
+        PLAN: ""
       with:
         template: .github/pull-request-template.md
+        run: terraform plan -no-color -input=false -out=tfplan >> $PLAN
         vars: |
           terraform_init: ${{ steps.init.outcome }}
           terraform_validate: ${{ steps.validate.outcome }}
