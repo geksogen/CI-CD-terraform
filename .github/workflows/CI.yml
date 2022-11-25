@@ -93,5 +93,4 @@ jobs:
     - name: Terraform Destroy
       id: desroy
       continue-on-error: true
-      if: steps.plan.outcome == 'success'
-      run: terraform destroy -auto-approve -input=false -no-color
+      run: terraform destroy -auto-approve -input=false -no-color tfplan
