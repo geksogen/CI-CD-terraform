@@ -48,10 +48,6 @@ jobs:
       continue-on-error: False
 
     - name: Add Plan Comment
-      if: steps.plan.outcome == 'success'
-      env:
-        URL: ${{ github.event.issue.comments_url }}
-        GITHUB_TOKEN: ${{ secrets.CUSTOM_PAT }}
       uses: thollander/actions-comment-pull-request@v1
       with:
         message: |
