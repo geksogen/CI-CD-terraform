@@ -5,7 +5,7 @@
 
 <details><summary>Show Plan</summary>
 
-          \`\`\`{{.terraform_plan_summary}}\`\`\`
+          
           
 </details>
 
